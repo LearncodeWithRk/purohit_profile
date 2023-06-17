@@ -38,9 +38,9 @@ function LatestArticle({ article }) {
 
 export default function Article({
   article,
-  latestArticles,
-  navigation,
-  settings,
+  
+
+  
 }) {
   const date = prismic.asDate(
     article.data.publishDate || article.first_publication_date
@@ -50,18 +50,18 @@ export default function Article({
     <Layout
       withHeaderDivider={false}
       withProfile={false}
-      navigation={navigation}
-      settings={settings}
+      
+     
     >
       <Head>
         <title>
           {prismic.asText(article.data.title)} |{" "}
-          {prismic.asText(settings.data.name)}
+         
         </title>
       </Head>
       <Bounded>
         <Link href="/" className="font-semibold tracking-tight text-slate-400">
-          &larr; Back to articles
+          &larr; Back
         </Link>
       </Bounded>
       <article>
@@ -75,23 +75,7 @@ export default function Article({
         </Bounded>
         <SliceZone slices={article.data.slices} components={components} />
       </article>
-      {latestArticles.length > 0 && (
-        <Bounded>
-          <div className="grid grid-cols-1 justify-items-center gap-16 md:gap-24">
-            <HorizontalDivider />
-            <div className="w-full">
-              <Heading size="2xl" className="mb-10">
-                Latest articles
-              </Heading>
-              <ul className="grid grid-cols-1 gap-12">
-                {latestArticles.map((article) => (
-                  <LatestArticle key={article.id} article={article} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Bounded>
-      )}
+     
     </Layout>
   );
 }
@@ -100,22 +84,16 @@ export async function getStaticProps({ params, previewData }) {
   const client = createClient({ previewData });
 
   const article = await client.getByUID("article", params.uid);
-  const latestArticles = await client.getAllByType("article", {
-    limit: 3,
-    orderings: [
-      { field: "my.article.publishDate", direction: "desc" },
-      { field: "document.first_publication_date", direction: "desc" },
-    ],
-  });
-  const navigation = await client.getSingle("navigation");
-  const settings = await client.getSingle("settings");
+   
+ 
+ 
 
   return {
     props: {
       article,
-      latestArticles,
-      navigation,
-      settings,
+    
+      
+      
     },
   };
 }

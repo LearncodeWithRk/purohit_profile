@@ -18,10 +18,7 @@ const routes = [
     type: "article",
     path: "/articles/:uid",
   },
-  {
-    type: "page",
-    path: "/:uid",
-  },
+ 
 ];
 
 /**

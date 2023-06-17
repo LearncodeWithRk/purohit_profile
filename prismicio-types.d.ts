@@ -142,51 +142,6 @@ export type NavigationDocument<Lang extends string = string> =
     "navigation",
     Lang
   >;
-/** Content for Page documents */
-interface PageDocumentData {
-  /**
-   * Title field in *Page*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: Title for the page
-   * - **API ID Path**: page.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
-   */
-  title: prismic.TitleField;
-  /**
-   * Slice Zone field in *Page*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-   *
-   */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>;
-}
-/**
- * Slice for *Page → Slice Zone*
- *
- */
-type PageDocumentDataSlicesSlice =
-  | ImageSlice
-  | QuoteSlice
-  | TextSlice
-  | ContactFormSlice;
-/**
- * Page document from Prismic
- *
- * - **API ID**: `page`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type PageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 /** Content for Settings documents */
 interface SettingsDocumentData {
   /**
@@ -263,7 +218,6 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ArticleDocument
   | NavigationDocument
-  | PageDocument
   | SettingsDocument;
 /**
  * Default variation for ContactForm Slice
@@ -498,9 +452,6 @@ declare module "@prismicio/client" {
       NavigationDocumentData,
       NavigationDocumentDataLinksItem,
       NavigationDocument,
-      PageDocumentData,
-      PageDocumentDataSlicesSlice,
-      PageDocument,
       SettingsDocumentData,
       SettingsDocument,
       AllDocumentTypes,
