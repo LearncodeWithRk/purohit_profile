@@ -19,19 +19,21 @@ export function Article({ article }) {
   const excerpt = getExcerpt(article.data.slices);
 
   return (
-    <li className="grid grid-cols-1 items-start gap-6 md:grid-cols-3 md:gap-8">
-      <PrismicNextLink document={article} tabIndex="-1">
+    
+
+  <div className="bg-gray-200 border shadow-sm rounded-xl hover:shadow-md transition">
+<PrismicNextLink document={article}>
+       
         <div className="aspect-h-3 aspect-w-4 relative bg-gray-100">
           {prismic.isFilled.image(featuredImage) && (
             <PrismicNextImage
               field={featuredImage}
               fill={true}
-              className="object-cover"
+              className="w-full object-cover rounded-t-xl"
             />
           )}
-        </div>
-      </PrismicNextLink>
-      <div className="grid grid-cols-1 gap-3 md:col-span-2">
+       </div>
+       <div className="p-2 md:p-2">
         <Heading as="h2">
           <PrismicNextLink document={article}>
             <PrismicText field={article.data.title} />
@@ -46,6 +48,12 @@ export function Article({ article }) {
           </p>
         )}
       </div>
-    </li>
+   
+      
+     
+      </PrismicNextLink>
+      
+    </div>
+   
   );
 }

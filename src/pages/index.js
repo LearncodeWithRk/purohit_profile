@@ -1,4 +1,4 @@
-import Head from "next/head";
+
 import * as prismic from "@prismicio/client";
 
 import { createClient } from "@/prismicio";
@@ -10,8 +10,6 @@ export default function Index({ articles }) {
   return (
     <Layout
       withHeaderDivider={false}
-     
-  
     >
       
       <Bounded size="widest">
