@@ -37,7 +37,7 @@ function LatestArticle({ article }) {
 }
 
 export default function Article({
-  article,
+  article
   
 
   
@@ -90,7 +90,7 @@ export async function getStaticProps({ params, previewData }) {
 
   return {
     props: {
-      article,
+      article
     
       
       
